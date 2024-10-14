@@ -24,6 +24,7 @@
 <body>
 
 <button onclick="createCookie()">Create Cookie</button>
+<button onclick="createCookie(50)">Create 50 Cookie</button>
 <button onclick="createAuthTokenCookie()">Create AuthToken</button>
 <button onclick="updateCookieKeys()">Refresh Cookies</button>
 <textarea id="cookieKeys" readonly></textarea>
@@ -35,6 +36,15 @@
         const dummyValue = 'x'.repeat(2048); // 2KB of dummy data
         document.cookie = `${timestampKey}=${dummyValue}; path=/;`;
 
+        updateCookieKeys();
+    }
+    function createCookie(i) {
+        const now = new Date();
+        const timestampKey = now.getTime();
+        const dummyValue = 'x'.repeat(2048); // 2KB of dummy data
+        for (let j = 0; j < i; j++) {
+            document.cookie = `${timestampKey}-${j}=${dummyValue}; path=/;`;
+        }
         updateCookieKeys();
     }
 
